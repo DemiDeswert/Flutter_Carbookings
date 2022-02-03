@@ -1,6 +1,7 @@
 import 'package:booking_carspot_app/pages/parkingspots.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class BookingPage extends StatefulWidget {
   const BookingPage({Key? key}) : super(key: key);
@@ -13,13 +14,14 @@ class _BookingPageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color.fromRGBO(235, 235, 235, 1),
         appBar: AppBar(
           leading: Image.asset("assets/icon.png"),
           title: const Text('Booking'),
           centerTitle: true,
           actions: <Widget>[
             Padding(
-                padding: EdgeInsets.only(right: 20.0),
+                padding: const EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -28,7 +30,7 @@ class _BookingPageState extends State {
                           builder: (context) => const ParkingspotsPage()),
                     );
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.keyboard_return,
                     color: Color.fromRGBO(0, 170, 156, 1),
                     size: 26.0,
@@ -81,7 +83,8 @@ class _BookingPageState extends State {
                     child: const Text("Save"),
                   ))
                 ],
-              )
+              ),
+              Lottie.asset('assets/booking.json'),
             ],
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
