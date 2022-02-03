@@ -1,0 +1,29 @@
+{
+    "Parkings": [
+      {
+        "id": 1,
+        "free_spots":12,
+        "timestamp": "2022-02-03T11:51:12.922Z"
+      },
+      {
+        "id": 2,
+        "free_spots":8,
+        "timestamp": "2022-02-04T11:51:12.922Z"
+      },
+      {
+        "id": 3,
+        "free_spots":10,
+        "timestamp": "2022-02-05T11:51:12.922Z"
+      },
+      {
+        "id": 4,
+        "free_spots":4,
+        "timestamp": "2022-02-06T11:51:12.922Z"
+      },
+      {
+        "id": 5,
+        "free_spots":6,
+        "timestamp": "2022-02-07T11:51:12.922Z"
+      }
+    ]
+  }
