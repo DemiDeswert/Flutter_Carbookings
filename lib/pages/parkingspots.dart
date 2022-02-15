@@ -1,16 +1,45 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors
+import '../models/reservation.dart';
+import '../apis/reservation_api.dart';
 import 'package:flutter/material.dart';
 import 'booking.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ParkingspotsPage extends StatefulWidget {
-  const ParkingspotsPage({Key? key}) : super(key: key);
+  //                      einddatetime = DateTime.parse(eindtijd!);
+  //                    begindatetime = DateTime.parse(begintijd!);
+
+  final String? begintijd;
+  final String? eindtijd;
+  const ParkingspotsPage(
+      {Key? key, required this.begintijd, required this.eindtijd})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ParkingspotsPageState();
 }
 
 class _ParkingspotsPageState extends State {
+  DateTime begindatetime = DateTime.now();
+  DateTime einddatetime = DateTime.now();
+  List<Reservation> reservationList = [];
+  int count = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _getParkingspots();
+  }
+
+  void _checktijd(DateTime begintijd, DateTime eindtijd) {}
+  void _getParkingspots() {
+    ReservationAPI.fetchParkingspots().then((result) {
+      setState(() {
+        reservationList = result;
+        count = result.length;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,21 +86,10 @@ class _ParkingspotsPageState extends State {
                 ),
                 textAlign: TextAlign.center,
               ),
-              //   "There are currently 6/12 spots avaible",
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(fontWeight: FontWeight.bold),
-              // ),
-              // textColor: Colors.white,
             ),
             Expanded(
               child: _parkingspots(),
             )
-            //     title: Text(
-            //       "There are currently 6/12 spots avaible",
-            //       textAlign: TextAlign.center,
-            //       style: TextStyle(fontWeight: FontWeight.bold),
-            //     ),
-            //     textColor: Color.fromRGBO(35, 45, 75, 1)),
           ]),
     );
   }
@@ -101,7 +119,6 @@ class _ParkingspotsPageState extends State {
                     ),
                     textColor: Color.fromRGBO(35, 45, 75, 1),
                     onTap: () {
-                      debugPrint("Tapped on " + index.toString());
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -119,8 +136,6 @@ class _ParkingspotsPageState extends State {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(3))),
               ),
-
-              //
             ),
           );
         });

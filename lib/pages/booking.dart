@@ -1,10 +1,13 @@
+import 'package:booking_carspot_app/pages/liveparkingspots.dart';
 import 'package:booking_carspot_app/pages/parkingspots.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class BookingPage extends StatefulWidget {
-  const BookingPage({Key? key}) : super(key: key);
+  const BookingPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _BookingPageState();
@@ -27,7 +30,7 @@ class _BookingPageState extends State {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ParkingspotsPage()),
+                          builder: (context) => const LiveParkingspotsPage()),
                     );
                   },
                   child: const Icon(
@@ -39,7 +42,6 @@ class _BookingPageState extends State {
           ],
         ),
         body: Padding(
-          // ignore: unnecessary_new
           child: ListView(
             children: <Widget>[
               const TextField(
@@ -63,28 +65,52 @@ class _BookingPageState extends State {
                   ),
                 ),
               ),
-              DateTimePicker(
-                type: DateTimePickerType.dateTimeSeparate,
-                dateMask: 'd MMM, yyyy',
-                initialValue: DateTime.now().toString(),
-                firstDate: DateTime(2022),
-                lastDate: DateTime(2100),
-                icon: const Icon(Icons.event),
-                dateLabelText: 'Date',
-                timeLabelText: "Hour",
+              const TextField(
+                decoration: InputDecoration(
+                  label: Text.rich(
+                    TextSpan(
+                      children: <InlineSpan>[
+                        WidgetSpan(
+                          child: Text(
+                            'License plate',
+                          ),
+                        ),
+                        WidgetSpan(
+                          child: Text(
+                            '*',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
+              // DateTimePicker(
+              //   type: DateTimePickerType.dateTimeSeparate,
+              //   dateMask: 'd MMM, yyyy',
+              //   initialValue: DateTime.now().toString(),
+              //   firstDate: DateTime(2022),
+              //   lastDate: DateTime(2100),
+              //   icon: const Icon(Icons.event),
+              //   dateLabelText: 'Date',
+              //   timeLabelText: "Hour",
+              // ),
               Row(
                 children: <Widget>[
                   Expanded(
                       child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LiveParkingspotsPage()),
+                      );
                     },
                     child: const Text("Save"),
                   ))
                 ],
               ),
-              Lottie.asset('assets/booking.json'),
             ],
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),

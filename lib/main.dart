@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import utils for specific color
 import '/utils.dart';
-import 'pages/parkingspots.dart';
+import 'pages/liveparkingspots.dart';
 
 void main() {
-  runApp(const UserManagementApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]).then((_) {
+    runApp(const UserManagementApp());
+  });
 }
 
 class UserManagementApp extends StatelessWidget {
@@ -19,7 +24,7 @@ class UserManagementApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch:
               createMaterialColor(const Color.fromRGBO(35, 45, 75, 1))),
-      home: const ParkingspotsPage(),
+      home: const LiveParkingspotsPage(),
     );
   }
 }
